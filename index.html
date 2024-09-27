@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You & Me - Our Story</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            z-index: 10;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .love-btn {
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .love-btn:hover {
+            transform: scale(1.2);
+        }
+        #photo-container {
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #fff;
+        }
+        #photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .flower {
+            position: absolute;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>for ratuuuu</h1>
+        <p>Hey you! Your smile lights up my world like nobody else's.</p>
+        <p>From that first "hi" to our inside jokes, every moment with you feels so happy</p>
+        <div id="photo-container">
+            <img src="https://img99.pixhost.to/images/868/516690460_ramzx.jpg" alt="placeholder" />
+        </div>
+        <p>You're not just my lover, you're my best friend. My partner in crime. My soulmate.</p>
+        <p>Let's keep making memories and stay cool together, forever!</p>
+        <button class="love-btn" onclick="showLove()">❤️</button>
+    </div>
+
+    <svg style="display:none;">
+        <symbol id="flower" viewBox="0 0 100 100">
+            <path d="M50 0 C60 20 80 20 100 30 C80 40 80 60 100 70 C80 80 60 80 50 100 C40 80 20 80 0 70 C20 60 20 40 0 30 C20 20 40 20 50 0" fill="#FF69B4"/>
+            <circle cx="50" cy="50" r="15" fill="#FFD700"/>
+        </symbol>
+    </svg>
+
+    <script>
+        function showLove() {
+            for (let i = 0; i < 15; i++) {
+                createFlower();
+            }
+        }
+
+        function createFlower() {
+            const flower = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            flower.classList.add('flower');
+            flower.setAttribute('width', '60');
+            flower.setAttribute('height', '60');
+            flower.style.position = 'absolute';
+            flower.style.left = Math.random() * window.innerWidth + 'px';
+            flower.style.top = Math.random() * window.innerHeight + 'px';
+            
+            const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            use.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#flower");
+            flower.appendChild(use);
+            
+            document.body.appendChild(flower);
+
+            anime({
+                targets: flower,
+                translateY: [-50, window.innerHeight + 50],
+                translateX: anime.random(-100, 100),
+                rotate: anime.random(-360, 360),
+                scale: [0.5, 1],
+                opacity: {
+                    value: [1, 0],
+                    duration: 2000,
+                    easing: 'linear'
+                },
+                duration: anime.random(3000, 5000),
+                easing: 'easeOutCirc',
+                complete: function() {
+                    flower.remove();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
